@@ -1,0 +1,26 @@
+{
+    "name": "Zeczec Chrome Extension", 
+    "description": "Check Zeczec website's items", 
+    "version": "1.0",
+    "manifest_version": 3, 
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": ["storage", "activeTab", "contextMenus"],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": "icon.png"
+    }, 
+    "content_scripts": [
+        {
+            "matches": ["https://www.zeczec.com/projects/*/edit"],
+            "exclude_matches": ["*://*/*options*"],
+            "exclude_matches": ["*://*/*abandon_reminder*"],
+            "js": ["content_edit.js"]
+        } ,
+        {
+            "matches": ["https://www.zeczec.com/projects/*/options/*/edit"],
+            "js": ["content_options.js"]
+        }        
+    ]
+}
